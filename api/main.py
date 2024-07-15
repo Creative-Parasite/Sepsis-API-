@@ -10,19 +10,18 @@ Description = """
  The API supports two models: Gradient Boosting Classifier and Random Forest Classifier.
  Both models are trained on a dataset from the UCI Machine Learning Repository.
 
- The input data should be a JSON object with the following structure:
-
- {
-    "prg": <float>,
-    "pl": <float>,
-    "pr": <float>,
-    "sk": <float>,
-    "ts": <float>,
-    "m11": <float>,
-    "bd2": <float>,
-    "age": <float>,
-    "insurance": "<str>"
- }
+ FEATURES
+ 
+    "prg": Plasma glucose level,
+    "pl": Blood work results 1 <mu U/ml>,
+    "pr": Blood pressure <mm hg>,
+    "sk": Blood work results 2  <mm>,
+    "ts": Blood work results 3 <mu U/ml>,
+    "m11": Body mass index <weight in kg / height in m^2>,
+    "bd2": Blood work results 4 <mu U/ml>,
+    "age": Patient's age ,
+    "insurance": Presence of an insurance card or not"
+ 
 
  The API returns a JSON object with the following structure:
 
@@ -62,24 +61,9 @@ class features(BaseModel):
     insurance : str
     
     
-@app.get('/sepsis')
+@app.get('/')
 def get_sepsis():
     return {'Title': 'Sepsis prediction API'}
-
-
-@app.post('/prediction', status_code=status.HTTP_201_CREATED)
-async def predict(input_data : features):
-    
-    df = pd.DataFrame([input_data.model_dump()])
-    
-    prediction = gradient.predict_proba(df)
-    prediction_class = gradient.predict(df)
-    result = 'Positive' if prediction_class[0] == 1 else 'Negative'
-   
-    return {
-        'prediction' : prediction.tolist(),
-        'results': result
-    }
 
 
 @app.post('/predict_sepsis')
