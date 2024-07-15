@@ -8,7 +8,6 @@
     - [FAST API ](#fastapi-)
     - [Streamlit ](#streamlit-)
     - [Docker ](#docker-)
-  - [Key Features ](#key-features-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -46,7 +45,30 @@ In this repo we will be building an API that detects a patient in the ICU for se
 
 *Insurance*: If a patient holds a valid insurance card
 
-*Sepsis*: Positive: if a patient in ICU will develop a sepsis , and Negative: otherwis
+*Sepsis*: Positive: if a patient in ICU will develop a sepsis , and Negative: otherwise
+
+## 🛠 Built With <a name="built-with"></a>
+
+<details>
+  <summary>FAST API</summary>
+  <ul>
+    <li><a href="">Fast api</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Streamlit</summary>
+  <ul>
+    <li><a href="">Streamlit</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Docker</summary>
+  <ul>
+    <li><a href="">Docker</a></li>
+  </ul>
+</details>
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
@@ -60,7 +82,7 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 ```sh
   cd my-folder
-  git clone https://github.com/Creative-Parasite/Telco_churn_app.git
+  git clone https://github.com/Creative-Parasite/Sepsis-API-.git
 ```
 Change into the cloned repository
 
@@ -93,11 +115,11 @@ Here, you need to recursively install the packages in the `requirements.txt` fil
 To run the project, execute the following command:
 
 ```sh
-    streamlit run 1_🏠_Home.py
+    uvicorn main:app --reload
 
 ```
-- A webpage opens up to view the app
-- Test a prediction by clicking on the predicitons page
+- A webpage opens up to view the api
+- Test a prediction by clicking on the prediciton page
 
 ## ☑️ Contributing <a name="contributing"></a>
 Contributions, features and issues are welcome .
@@ -111,7 +133,7 @@ I would like to extend my appreciations to my team project and Azubi Africa for 
 ## 📝 License <a name="license"></a> 
 This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
 
-## 🦹‍♀️ Author <a name="authors"></a>
+## 🦹‍♀️ Authors <a name="authors"></a>
 🕵🏽‍♀️ **Nyawira Kamuri**
 
 [@Creative-Parasite](https://github.com/Creative-Parasite) 
