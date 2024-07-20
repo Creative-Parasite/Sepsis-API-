@@ -1,0 +1,22 @@
+services: 
+  backend:
+    build:
+      context: ./api
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      api-tier:
+  client:
+    build:
+      context: ./Streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+       - backend
+    restart: always
+    networks:
+      api-tier:
+networks:
+  api-tier:
+    driver: bridge
