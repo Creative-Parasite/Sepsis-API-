@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd 
 import requests
 
-backend_url = "http://127.0.0.1:8000"
+# backend_url = "http://localhost:8000"
+
+backend_url ="http://backend:80"
 
 st.set_page_config(
     page_title= 'SEPSIS API',
@@ -47,9 +49,11 @@ def main():
                 'insurance': insurance
             }
             
-            response = requests.post(f"{backend_url}/predict_sepsis", json=input_data)
+            status_code = requests.get(backend_url).status_code
             
-            if response.status_code == 200:
+            if status_code == 200:
+                response = requests.post(f"{backend_url}/predict_sepsis", json=input_data, timeout=60)
+            # if response.status_code == 200:
                 prediction = response.json()['prediction']
                 st.success(f'The patient tested {prediction} for sepsis')
             else:
