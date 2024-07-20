@@ -39,9 +39,9 @@ app = FastAPI(
 )
 
 ## Load your models and encoder
-gradient = joblib.load("../models/toolkit/GradientBoostingClassifier.joblib")
-random_forest = joblib.load("../models/toolkit/random_forest.joblib")
-encoder = joblib.load("../models/toolkit/label_encoder.joblib")
+gradient = joblib.load("./toolkit/GradientBoostingClassifier.joblib")
+random_forest = joblib.load("./toolkit/random_forest.joblib")
+encoder = joblib.load("./toolkit/label_encoder.joblib")
 
 ## Configure the logs
 logging.basicConfig(level=logging.INFO)
@@ -61,12 +61,12 @@ class features(BaseModel):
     insurance : str
     
     
-@app.get('/')
+@app.get('/', status_code=status.HTTP_200_OK)
 def get_sepsis():
     return {'Title': 'Sepsis prediction API'}
 
 
-@app.post('/predict_sepsis')
+@app.post('/predict_sepsis', status_code=status.HTTP_201_CREATED)
 def predict_sepsis(data: features, model: str = Query('random_forest', enum=['random_forest', 'gradient'])):
     df = pd.DataFrame([data.model_dump()])
  
